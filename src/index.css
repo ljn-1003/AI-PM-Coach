@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* 底色 + 主色 */
+  --color-canvas: #faf9f7;
+  --color-card: #fffefb;
+  --color-primary: #1e3a5f;
+  --color-primary-hover: #16304f;
+  --color-ink: #1f2328;
+  --color-muted: #6b7280;
+  --color-line: #e8e6e1;
+
+  /* 语义色：强项绿 / 弱项橙（低饱和，不用红） */
+  --color-strong: #4f8a5f;
+  --color-weak: #c08a4f;
+
+  /* 字体：正文无衬线，标题宋体（书卷感） */
+  --font-sans: system-ui, -apple-system, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-serif: "Songti SC", "STSong", "SimSun", "Noto Serif SC",
+    "Source Han Serif SC", serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+}
