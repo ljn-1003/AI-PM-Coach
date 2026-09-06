@@ -1,4 +1,4 @@
-// 弱点诊断：按维度生成个性化诊断。优先调用 Claude，失败重试 1s/3s，仍失败走本地降级文本。
+// 弱点诊断：按维度生成个性化诊断。优先调用 LLM（模型/密钥来自 .env），失败重试 1s/3s，仍失败走本地降级文本。
 
 export interface QuestionInfo {
   id: number
@@ -37,7 +37,11 @@ export interface Diagnosis {
 
 export const MIN_QUESTIONS_FOR_DIAGNOSIS = 2
 
-const MODEL = 'claude-sonnet-4-6'
+// LLM 配置统一从 .env 读取（模型名、密钥、API 地址），代码不硬编码。
+const LLM_MODEL = import.meta.env.VITE_LLM_MODEL as string | undefined
+const LLM_API_KEY = import.meta.env.VITE_LLM_API_KEY as string | undefined
+const LLM_BASE_URL =
+  (import.meta.env.VITE_LLM_BASE_URL as string | undefined) ?? 'https://api.deepseek.com'
 
 function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms))
@@ -413,26 +417,23 @@ ${highScore ? '【优势】\n列出 1-3 个可以挑战的更难话题，每个�
 
 // ---------------- 调用 + 重试 + 降级 ----------------
 
-async function callClaude(prompt: string): Promise<string> {
-  const key = import.meta.env.VITE_ANTHROPIC_API_KEY as string | undefined
-  if (!key) throw new Error('no api key')
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+async function callLLM(prompt: string): Promise<string> {
+  if (!LLM_API_KEY || !LLM_MODEL) throw new Error('no llm config')
+  const res = await fetch(`${LLM_BASE_URL.replace(/\/$/, '')}/chat/completions`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      'x-api-key': key,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
+      authorization: `Bearer ${LLM_API_KEY}`,
     },
     body: JSON.stringify({
-      model: MODEL,
+      model: LLM_MODEL,
       max_tokens: 1200,
       messages: [{ role: 'user', content: prompt }],
     }),
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const data = await res.json()
-  return data.content?.[0]?.text ?? ''
+  return data.choices?.[0]?.message?.content ?? ''
 }
 
 function pick(text: string, tag: string): string {
@@ -489,7 +490,7 @@ export async function generateDiagnosis(input: DiagnosisInput): Promise<Diagnosi
   for (let i = 0; i < 3; i++) {
     if (i > 0) await sleep(i === 1 ? 1000 : 3000)
     try {
-      const text = await callClaude(prompt)
+      const text = await callLLM(prompt)
       const parsed = parse(text)
       if (parsed) return { ...parsed, missingCitation: !hasQuestionCitation(parsed) }
     } catch {
@@ -572,12 +573,12 @@ export async function generateResources(
   dimensionName: string,
   points: string[],
 ): Promise<Resource[]> {
-  if (!(import.meta.env.VITE_ANTHROPIC_API_KEY as string | undefined)) return FALLBACK_RESOURCES
+  if (!LLM_API_KEY || !LLM_MODEL) return FALLBACK_RESOURCES
   const prompt = buildResourcePrompt(dimensionName, points)
   for (let i = 0; i < 3; i++) {
     if (i > 0) await sleep(i === 1 ? 1000 : 3000)
     try {
-      const text = await callClaude(prompt)
+      const text = await callLLM(prompt)
       const parsed = parseResources(text)
       if (parsed) return parsed
     } catch {
