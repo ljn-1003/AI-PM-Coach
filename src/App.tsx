@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
 import Intro from './pages/Intro'
 import Landing from './pages/Landing'
 import Quiz from './pages/Quiz'
@@ -11,6 +12,7 @@ export default function App() {
       <Route path="/intro" element={<Intro />} />
       <Route path="/quiz" element={<Quiz />} />
       <Route path="/result" element={<Result />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   )
 }

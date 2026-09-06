@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:questions": "node scripts/build-question-bank.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },

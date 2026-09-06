@@ -1,6 +1,15 @@
 import { Button } from '../components/Button'
+import { loadSnapshots } from '../lib/session'
+import Dashboard from './Dashboard'
 
 export default function Landing() {
+  const hasSnapshots = loadSnapshots().length > 0
+
+  // 老用户（有历史快照）打开首页直接进能力主页：雷达图 + 复测对比 + 立即复测
+  if (hasSnapshots) {
+    return <Dashboard />
+  }
+
   return (
     <main className="flex min-h-screen flex-col px-6">
       <div className="flex flex-1 flex-col items-center justify-center text-center">
@@ -10,7 +19,7 @@ export default function Landing() {
         <p className="mt-5 text-base text-muted sm:text-lg">
           15 分钟，6 个维度，告诉你该补什么
         </p>
-        <div className="mt-10 w-full max-w-xs">
+        <div className="mt-10 flex w-full max-w-xs flex-col gap-3">
           <Button to="/intro" className="w-full">
             开始测评
           </Button>

@@ -13,5 +13,5 @@ export const dimensions: Dimension[] = [
   { id: 3, name: '数据与评估', desc: '指标设计、评测体系、A/B 实验', color: '#6f9c78' },
   { id: 4, name: '用户洞察', desc: '用户研究、场景挖掘、需求验证', color: '#c2895c' },
   { id: 5, name: '商业化思维', desc: '商业模式、定价、GTM 策略', color: '#8c7aa6' },
-  { id: 6, name: '工程协作与落地', desc: '与工程师协作、敏捷流程、交付落地', color: '#bb85a0' },
+  { id: 6, name: '工程协作与落地', desc: '项目推动、跨团队协作、交付落地', color: '#bb85a0' },
 ]

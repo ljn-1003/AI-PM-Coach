@@ -1,32 +1,49 @@
-# React + TypeScript + Vite
+# AI PM Coach
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+给想转 AI 产品经理的人做能力诊断：从 6 个维度测出你的能力短板，并给出针对性诊断。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript + Vite
+- Tailwind CSS v4
+- react-router-dom v7
 
-## React Compiler
+## 快速开始
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev      # 本地开发，访问 http://localhost:5173
+npm run build    # 类型检查 + 构建到 dist/
+npm run preview  # 预览构建产物
+npm run lint     # oxlint 代码检查
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 页面
+
+| 路由 | 页面 | 说明 |
+|---|---|---|
+| `/` | 落地页 | 首屏 + 开始测评入口 |
+| `/intro` | 测评介绍 | 6 个维度 + 时长说明 |
+| `/quiz` | 答题页 | 单选 + 跳过，不判对错 |
+| `/result` | 结果页 | 雷达图 + 六维度诊断 |
+
+## 目录结构
+
+```
+src/
+├── main.tsx / App.tsx    # 入口 + 路由
+├── index.css             # Tailwind 主题 token（暖白底 + 深蓝主色）
+├── data/                 # 单一数据源：维度、题库、mock 结果
+├── components/           # 可复用组件：Button、RadarChart
+└── pages/                # 路由页面：Landing / Intro / Quiz / Result
+```
+
+## 当前状态
+
+- 题库目前 5 道样题，目标 15 题（进度条已按 15 题展示）
+- 结果页使用 mock 数据，尚未接入真实评分
+- 暂无后端 / 用户系统 / API 调用
+
+## 项目约定
+
+结构约定、设计 token、命令见 [CLAUDE.md](./CLAUDE.md)。

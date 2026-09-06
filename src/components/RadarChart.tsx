@@ -6,6 +6,10 @@ interface RadarDatum {
 
 interface RadarChartProps {
   data: RadarDatum[]
+  /** 上次快照，浅灰虚线叠加（复测对比用） */
+  compareData?: RadarDatum[]
+  /** 点击某个维度顶点/分数时回调（分数解释弹窗用） */
+  onPointClick?: (index: number) => void
 }
 
 const RINGS = [20, 40, 60, 80, 100]
@@ -16,7 +20,7 @@ const RADIUS = 118
 const LABEL_OFFSET = 32
 
 /** 纯 SVG 六边形雷达图：六维度低饱和色 + 强项绿/弱项橙轴线提示 */
-export function RadarChart({ data }: RadarChartProps) {
+export function RadarChart({ data, compareData, onPointClick }: RadarChartProps) {
   const n = data.length
   const angleAt = (i: number) => -Math.PI / 2 + i * ((2 * Math.PI) / n)
   const pointAt = (i: number, value: number) => {
@@ -93,19 +97,42 @@ export function RadarChart({ data }: RadarChartProps) {
         )
       })}
 
-      {/* 数据多边形 */}
+      {/* 数据多边形（本次：主色实线 + 半透明填充） */}
       <polygon
         points={dataPoints.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')}
         fill="var(--color-primary)"
-        fillOpacity={0.12}
+        fillOpacity={compareData ? 0.3 : 0.12}
         stroke="var(--color-primary)"
         strokeWidth={2}
         strokeLinejoin="round"
       />
 
+      {/* 上次数据多边形（浅灰虚线、不填充，画在上层保证可见） */}
+      {compareData && (
+        <polygon
+          points={compareData.map((d, i) => {
+            const p = pointAt(i, d.value)
+            return `${p.x.toFixed(1)},${p.y.toFixed(1)}`
+          }).join(' ')}
+          fill="none"
+          stroke="var(--color-muted)"
+          strokeWidth={2}
+          strokeDasharray="6 5"
+          strokeLinejoin="round"
+        />
+      )}
+
       {/* 数据顶点（维度色） */}
       {dataPoints.map((p, i) => (
-        <circle key={`dot-${i}`} cx={p.x} cy={p.y} r={4} fill={data[i].color} />
+        <circle
+          key={`dot-${i}`}
+          cx={p.x}
+          cy={p.y}
+          r={8}
+          fill={data[i].color}
+          onClick={onPointClick ? () => onPointClick(i) : undefined}
+          style={onPointClick ? { cursor: 'pointer' } : undefined}
+        />
       ))}
 
       {/* 分数标注（顶点内侧） */}
@@ -122,6 +149,8 @@ export function RadarChart({ data }: RadarChartProps) {
             fontSize={22}
             fontWeight={600}
             fill="var(--color-ink)"
+            onClick={onPointClick ? () => onPointClick(i) : undefined}
+            style={onPointClick ? { cursor: 'pointer' } : undefined}
           >
             {d.value}
           </text>
