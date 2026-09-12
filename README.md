@@ -2,9 +2,8 @@
 
 给想转 AI 产品经理的人做能力诊断的测评工具：用 15 道自适应题目测出 6 个能力维度的短板，结合 LLM 生成个性化诊断与学习建议.
 
-<img width="200" height="787" alt="屏幕截图 2026-09-12 164919" src="https://github.com/user-attachments/assets/ff365c5e-cf20-47e7-b332-55fcafbdfb04" />
-<img width="200" height="783" alt="屏幕截图 2026-09-12 164858" src="https://github.com/user-attachments/assets/fb73f479-57fb-4d40-a97f-6070bfad33f9" />
-<img width="200" height="787" alt="image" src="https://github.com/user-attachments/assets/6e833cab-97ed-4c41-9a71-68f6ef240138" />
+<img width="452" height="783" alt="屏幕截图 2026-09-12 164858" src="https://github.com/user-attachments/assets/42c01e44-3384-4bf6-bfe8-28287b4669e5" /><img width="449" height="787" alt="屏幕截图 2026-09-12 164919" src="https://github.com/user-attachments/assets/ccc49723-5472-4929-9672-895f941f07b1" />
+
 
 ## 目录
 
