@@ -2,7 +2,18 @@
 
 给想转 AI 产品经理的人做能力诊断的测评工具：用 15 道自适应题目测出 6 个能力维度的短板，结合 LLM 生成个性化诊断与学习建议.
 
-<img width="452" height="783" alt="屏幕截图 2026-09-12 164858" src="https://github.com/user-attachments/assets/42c01e44-3384-4bf6-bfe8-28287b4669e5" /><img width="449" height="787" alt="屏幕截图 2026-09-12 164919" src="https://github.com/user-attachments/assets/ccc49723-5472-4929-9672-895f941f07b1" />
+<img width="250" alt="屏幕截图 2026-09-12 164858" src="https://github.com/user-attachments/assets/42c01e44-3384-4bf6-bfe8-28287b4669e5" /><img width="250"  alt="屏幕截图 2026-09-12 164919" src="https://github.com/user-attachments/assets/ccc49723-5472-4929-9672-895f941f07b1" />
+<img width="444" height="781" alt="屏幕截图 2026-09-12 164238" src="https://github.com/user-attachments/assets/6db01613-4fca-4d9f-a81c-4fb34e0a1dd4" />
+<img width="442" height="783" alt="屏幕截图 2026-09-12 163958" src="https://github.com/user-attachments/assets/17da922a-5b65-435c-a69c-13fdb1b90ef2" />
+<img width="440" height="785" alt="屏幕截图 2026-09-12 163939" src="https://github.com/user-attachments/assets/10077e55-9018-4d13-9a73-e036824ddd36" />
+<img width="441" height="789" alt="屏幕截图 2026-09-12 163911" src="https://github.com/user-attachments/assets/942f64ba-8054-4f1e-91ff-1799278dd30b" /><img width="439" height="778" alt="屏幕截图 2026-09-12 164405" src="https://github.com/user-attachments/assets/66677577-726c-4fa5-954f-f0cd580309dc" /><img width="442" height="788" alt="屏幕截图 2026-09-12 164438" src="https://github.com/user-attachments/assets/e620c2b4-75d4-4234-b19a-87fd107c9f73" /><img width="438" height="777" alt="屏幕截图 2026-09-12 164519" src="https://github.com/user-attachments/assets/d22c066f-50d5-4a6b-9d9f-d156dc61f0c9" /><img width="443" height="785" alt="屏幕截图 2026-09-12 164547" src="https://github.com/user-attachments/assets/7e0213b8-5ea8-4149-980d-cf83123c470c" /><img width="443" height="785" alt="屏幕截图 2026-09-12 164621" src="https://github.com/user-attachments/assets/43a6ef23-f7bb-4bfe-97d5-3ace38a414b5" />
+<img width="438" height="781" alt="屏幕截图 2026-09-12 164633" src="https://github.com/user-attachments/assets/144dac47-78e9-4637-9637-c7de81f5b8fe" /><img width="439" height="777" alt="屏幕截图 2026-09-12 164712" src="https://github.com/user-attachments/assets/e6b853c0-1d78-4b0b-9e75-3903e2b6e47e" /><img width="440" height="779" alt="屏幕截图 2026-09-12 164726" src="https://github.com/user-attachments/assets/b408b044-91ca-44f2-80e8-7a3d8dee0cb1" />
+
+
+
+
+
+
 
 
 ## 目录
